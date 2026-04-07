@@ -25,7 +25,7 @@ Il bot monitora i tentativi falliti tramite `DatabaseManager.java`:
 
 ### 3. Workflow della Verifica
 1. L'utente lancia il comando `/verify`.
-2. Il bot genera un link dinamico: `https://dominio.com/verify?token=UUID`.
+2. Il bot genera un link dinamico: `https://dominio.com/verify?token=UUID`. (in fase di sviluppo e integrazione, percui ancora non funzionante)
 3. Javalin serve una pagina HTML protetta da reCAPTCHA.
 4. Al click su "Verificami", il server effettua una chiamata POST `siteverify` ai server di Google.
 5. In caso di successo, il bot assegna il ruolo tramite `guild.addRoleToMember` e pulisce i dati temporanei.
