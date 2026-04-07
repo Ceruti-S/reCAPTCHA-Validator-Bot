@@ -1,6 +1,8 @@
 package it.codhub.verifybot;
 
+import net.dv8tion.jda.api.entities.MessageType;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,6 +13,25 @@ import static it.codhub.verifybot.MainClass.pendingVerifications;
 
 public class VerifyCommand extends ListenerAdapter
 {
+
+    @Override
+    public void onMessageReceived(@NotNull MessageReceivedEvent event)
+    {
+
+        if (event.getChannel().getId().equals("1490452494537724065"))
+        {
+
+            //se il messaggio NON è un comando slash (quindi è testo normale), lo elimino
+            if (!event.getMessage().getType().equals(MessageType.SLASH_COMMAND))
+            {
+
+                event.getMessage().delete().queue();
+
+            }
+
+        }
+
+    }
 
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event)
