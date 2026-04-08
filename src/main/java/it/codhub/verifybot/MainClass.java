@@ -26,7 +26,7 @@ public class MainClass {
 
     public static JDA jda;
 
-    // Mappa che associa il Token UUID all'oggetto VerificationData (ID utente + timestamp)
+    //mappa che associa il Token UUID all'oggetto VerificationData (ID utente + timestamp)
     protected static final Map<String, VerificationData> pendingVerifications = new ConcurrentHashMap<>();
 
     protected static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
@@ -70,12 +70,12 @@ public class MainClass {
         // --- PARTE WEB ---
         var app = Javalin.create().start(8080);
 
-        // Shutdown Hook per spegnere tutto correttamente
+        //shutdown Hook per spegnere tutto correttamente
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("Segnale di chiusura ricevuto! Spegnimento in corso...");
             if (jda != null) jda.shutdown();
             if (app != null) app.stop();
-            scheduler.shutdown(); // Spegne lo spazzino
+            scheduler.shutdown(); //spegne lo spazzino
             DatabaseManager.close();
             System.out.println("Bot e servizi spenti correttamente.");
         }));
@@ -186,10 +186,10 @@ public class MainClass {
                     pendingVerifications.remove(token); //il token è stato usato, lo eliminiamo subito
                     DatabaseManager.deleteUser(data.userId);
 
-                    logToDiscord("✅ Verifica Superata", "L'utente <@" + data.userId + "> ha completato il reCAPTCHA con successo.", java.awt.Color.GREEN);
+                    logToDiscord("Verifica Superata", "L'utente <@" + data.userId + "> ha completato il reCAPTCHA con successo.", java.awt.Color.GREEN);
 
                     ctx.html("<!DOCTYPE html><html lang='it'><body style='background-color:#2c2f33;color:white;text-align:center;font-family:sans-serif;padding-top:100px;'>" +
-                            "<h1>✅ Verifica Completata!</h1><p>Puoi tornare su Discord.</p></body></html>");
+                            "<h1>Verifica Completata!</h1><p>Puoi tornare su Discord.</p></body></html>");
 
                 }
                 else

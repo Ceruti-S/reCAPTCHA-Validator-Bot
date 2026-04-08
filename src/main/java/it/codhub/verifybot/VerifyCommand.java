@@ -82,7 +82,7 @@ public class VerifyCommand extends ListenerAdapter
                         .queue();
 
                 //log per lo staff
-                MainClass.logToDiscord("⏳ Isolamento Temporaneo",
+                MainClass.logToDiscord("Isolamento Temporaneo",
                         "L'utente " + userMention + " è in timeout (7+ fallimenti).\nIl ban automatico scatterà tra 24 ore.",
                         java.awt.Color.ORANGE);
 
@@ -98,7 +98,7 @@ public class VerifyCommand extends ListenerAdapter
                         {
 
                             member.ban(0, TimeUnit.DAYS).reason("Ban automatico: mancata verifica dopo 24h di timeout.").queue(
-                                    success -> MainClass.logToDiscord("🚫 Ban Eseguito", "L'utente " + userId + " non si è verificato entro le 24h ed è stato rimosso.", java.awt.Color.BLACK)
+                                    success -> MainClass.logToDiscord("Ban Eseguito", "L'utente " + userId + " non si è verificato entro le 24h ed è stato rimosso.", java.awt.Color.BLACK)
                             );
 
                         }
@@ -111,7 +111,7 @@ public class VerifyCommand extends ListenerAdapter
                 return;
             }
 
-            MainClass.logToDiscord("📝 Comando Eseguito", "L'utente " + event.getUser().getAsMention() + " ha richiesto un captcha (Tentativo: " + attempts + ")", java.awt.Color.BLUE);
+            MainClass.logToDiscord("Comando Eseguito", "L'utente " + event.getUser().getAsMention() + " ha richiesto un captcha (Tentativo: " + attempts + ")", java.awt.Color.BLUE);
 
             //invece di usare l'ID utente direttamente uso questo:
             String token = java.util.UUID.randomUUID().toString();
